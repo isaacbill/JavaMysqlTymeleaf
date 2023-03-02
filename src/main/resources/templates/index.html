@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<title>SEARCH</title>
+</head>
+<body>
+<div class="container mt-5">
+<h2 align="center">Employee List</h2>
+  <form th:action="@{/search}" method="get">
+  <input type="text" name="keyword" th:value="${keyword}"  placeholder="Find by Employee Name or Department" size="50" >
+  <button type="submit" class="btn btn-info" >Search</button>
+  <button type="submit" class="btn btn-info" >Reset</button>
+  </form>
+  <table class="table table-bordered table-sm mt-2">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Employee Name</th>
+        <th>Employee Email</th>
+        <th>Employee Department</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="employees : ${list}" th:field="${employees}">
+        <td th:text="${employeesStat.index+1}"></td>
+        <td th:text="${employees.name}"></td>
+        <td th:text="${employees.email}"></td>
+        <td th:text="${employees.department}"></td>
+        <td>
+        <a th:href="@{/update/{id}(id=${employees.id})}" ><i class="fa fa-edit" >Edit</i></a>
+        <a th:href="@{/delete/{id}(id=${employees.id})}" ><i class="fa fa-remove">Delete</i></a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>
+
+
+
+
+ 
+        <div th:switch="${Records}">
+
+        <a th:href="@{/showNewForm}" class="btn btn-primary btn-sm mb-3"> Add entry </a>
+
+<tr th:each="BLU_SD : ${Records}">
